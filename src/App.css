@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -35,4 +38,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+.sender {
+  float: right;
+  /* width: max-content; */
+  color: blue;
+  text-align: right;
+  margin: 2px;
+  /* border: 1px solid; */
+}
+.receiver {
+  float: left;
+  /* width: max-content; */
+  color: red;
+  margin: 2px;
+  text-align: left;
+  word-wrap: normal;
+  /* border: 1px solid; */
 }
