@@ -6,11 +6,12 @@ import { useState, useRef, useEffect } from "react";
 function App() {
   const [senderState, setSenderState] = useState([
     { id: 1, value: "Hello", origin: "sender" },
-    { id: 1, value: "Hello", origin: "receiver" },
+    { id: 2, value: "Hello", origin: "receiver" },
   ]);
   const [enter, setEnter] = useState(false);
 
   const inputRef = useRef();
+  const appRef = useRef();
 
   const handleInputEnter = () => {
     setSenderState([
@@ -27,10 +28,13 @@ function App() {
   useEffect(() => {
     if (enter) handleSenderMessage();
     return () => {
-      inputRef.current.value = "";
       setEnter(false);
     };
   }, [enter]);
+
+  useEffect(() => {
+    appRef.current.scrollTop = appRef.current.scrollHeight;
+  }, [senderState]);
   const handleSenderMessage = async () => {
     const response = await axios.get("http://127.0.0.1:2000/greet");
     setSenderState([
@@ -41,22 +45,24 @@ function App() {
         value: response.data,
       },
     ]);
+    inputRef.current.value = "";
   };
 
   return (
     <div className="App">
-      <h1>Interview Bot</h1>
+      <h1 style={{ color: "blueviolet" }}>Mock Chat 🚀</h1>
       <div
-        conte
+        ref={appRef}
         style={{
           overflowY: "scroll",
+          scrollBehavior: "smooth",
           position: "relative",
           display: "flex",
           flexDirection: "column",
           width: "60%",
           minWidth: "300px",
           height: "400px",
-          border: "solid 14px blueviolet",
+          border: "solid 10px blueviolet",
           borderRadius: "10px",
           paddingLeft: "5px",
           paddingRight: "5px",
@@ -67,13 +73,15 @@ function App() {
         {/* <div className="receiver">+
           <p>Hi</p>
         </div> */}
+
         {senderState.map((item) => (
-          <div className={item.origin}>
+          <div key={item.id} className={item.origin}>
             <p className={"messageContainer"}>{item.value.toString()}</p>
           </div>
         ))}
       </div>
-      <div className="InputBar">
+
+      <div className="inputBar">
         <input
           ref={inputRef}
           onKeyPress={(event) => {

@@ -71,3 +71,33 @@
 .sender p {
   background-color: blueviolet;
 }
+
+.inputBar {
+  padding: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  max-width: 400px;
+}
+.inputBar input {
+  font-size: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(54, 22, 85);
+  border-color: blueviolet;
+  border-width: 5px;
+  padding: 6px;
+  height: 20px;
+  border-radius: 25px;
+  outline: none;
+}
+.inputBar button {
+  font-size: 15px;
+  color: #ffffff;
+  background-color: blueviolet;
+  border-color: blueviolet;
+  border-width: 5px;
+  padding: 6px;
+
+  border-radius: 25px;
+  outline: none;
+}
