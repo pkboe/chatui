@@ -42,17 +42,32 @@
 .sender {
   float: right;
   /* width: max-content; */
-  color: blue;
+
   text-align: right;
+  border-radius: 5px 5px 0px 10px;
   margin: 2px;
-  /* border: 1px solid; */
 }
 .receiver {
   float: left;
   /* width: max-content; */
-  color: red;
+
   margin: 2px;
   text-align: left;
+  border-radius: 5px 5px 10px 0px;
   word-wrap: normal;
-  /* border: 1px solid; */
+}
+.messageContainer {
+  color: rgb(246, 246, 246);
+  float: inherit;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: inherit;
+  width: max-content;
+}
+
+.receiver p {
+  background-color: rgb(64, 20, 105);
+}
+.sender p {
+  background-color: blueviolet;
 }

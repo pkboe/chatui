@@ -1,10 +1,14 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import axios from "axios";
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
 
 function App() {
-  const [senderState, setSenderState] = useState([]);
+  const [senderState, setSenderState] = useState([
+    { id: 1, value: "Hello", origin: "sender" },
+    { id: 1, value: "Hello", origin: "receiver" },
+  ]);
+  const [enter, setEnter] = useState(false);
 
   const inputRef = useRef();
 
@@ -17,20 +21,18 @@ function App() {
         value: inputRef.current.value,
       },
     ]);
-
-    inputRef.current.value = "";
-    // console.log(senderState);
-    handleSenderMessage();
+    setEnter(true);
   };
 
   useEffect(() => {
-    console.log(senderState);
-  }, [senderState]);
-
+    if (enter) handleSenderMessage();
+    return () => {
+      inputRef.current.value = "";
+      setEnter(false);
+    };
+  }, [enter]);
   const handleSenderMessage = async () => {
     const response = await axios.get("http://127.0.0.1:2000/greet");
-    console.log(response.data);
-    console.log(senderState);
     setSenderState([
       ...senderState,
       {
@@ -54,17 +56,20 @@ function App() {
           width: "60%",
           minWidth: "300px",
           height: "400px",
-          border: "solid 1px blue",
+          border: "solid 14px blueviolet",
+          borderRadius: "10px",
+          paddingLeft: "5px",
+          paddingRight: "5px",
 
           // maxWidth: "250px",
         }}
       >
-        {/* <div className="receiver">
+        {/* <div className="receiver">+
           <p>Hi</p>
         </div> */}
         {senderState.map((item) => (
           <div className={item.origin}>
-            <p>{item.value.toString()}</p>
+            <p className={"messageContainer"}>{item.value.toString()}</p>
           </div>
         ))}
       </div>

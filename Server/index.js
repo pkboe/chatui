@@ -20,8 +20,6 @@ app.get("/", (req, res) => {
 
 app.get("/greet", (req, res) => {
   let output = greets[Math.floor(Math.random() * greets.length)];
-  console.log(req);
-  req;
   res.send(output);
 });
 
