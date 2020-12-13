@@ -85,7 +85,7 @@ function App() {
           placeholder="Type Something..."
         />
         <button type="submit" onClick={handleInputEnter}>
-          Send
+          Send Message
         </button>
       </div>
     </div>
