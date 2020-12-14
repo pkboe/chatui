@@ -12,17 +12,22 @@ function App() {
 
   const inputRef = useRef();
   const appRef = useRef();
+  const buttonRef = useRef();
 
   const handleInputEnter = () => {
-    setSenderState([
-      ...senderState,
-      {
-        id: senderState.length + 1,
-        origin: "sender",
-        value: inputRef.current.value,
-      },
-    ]);
-    setEnter(true);
+    if (inputRef.current.value !== "") {
+      setSenderState([
+        ...senderState,
+        {
+          id: senderState.length + 1,
+          origin: "sender",
+          value: inputRef.current.value,
+        },
+      ]);
+      setEnter(true);
+      buttonRef.current.disabled = true;
+      inputRef.current.disabled = true;
+    }
   };
 
   useEffect(() => {
@@ -30,13 +35,13 @@ function App() {
     return () => {
       setEnter(false);
     };
-  }, [enter]);
+  });
 
   useEffect(() => {
     appRef.current.scrollTop = appRef.current.scrollHeight;
   }, [senderState]);
   const handleSenderMessage = async () => {
-    const response = await axios.get("http://127.0.0.1:2000/greet");
+    const response = await axios.get("https://pkaychatapi.herokuapp.com/greet");
     setSenderState([
       ...senderState,
       {
@@ -46,15 +51,20 @@ function App() {
       },
     ]);
     inputRef.current.value = "";
+    inputRef.current.disabled = false;
+    buttonRef.current.disabled = false;
   };
 
   return (
     <div className="App">
-      <h1 style={{ color: "blueviolet" }}>Mock Chat 🚀</h1>
+      <h1 style={{ color: "blueviolet" }}>MockUp Interview Chat 🚀</h1>
       <div
         ref={appRef}
+        className="chatContainer"
+        z
         style={{
           overflowY: "scroll",
+          scrollbarWidth: "none",
           scrollBehavior: "smooth",
           position: "relative",
           display: "flex",
@@ -76,11 +86,11 @@ function App() {
 
         {senderState.map((item) => (
           <div key={item.id} className={item.origin}>
+            {/* <gg style={{ height: "1px" }}>{new Date().toLocaleString()}</gg> */}
             <p className={"messageContainer"}>{item.value.toString()}</p>
           </div>
         ))}
       </div>
-
       <div className="inputBar">
         <input
           ref={inputRef}
@@ -92,7 +102,7 @@ function App() {
           type="text"
           placeholder="Type Something..."
         />
-        <button type="submit" onClick={handleInputEnter}>
+        <button ref={buttonRef} type="submit" onClick={handleInputEnter}>
           Send Message
         </button>
       </div>

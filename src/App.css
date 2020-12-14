@@ -42,7 +42,6 @@
 .sender {
   float: right;
   /* width: max-content; */
-
   text-align: right;
   border-radius: 5px 5px 0px 10px;
   margin: 2px;
@@ -100,4 +99,30 @@
 
   border-radius: 25px;
   outline: none;
+}
+
+.chatContainer {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.chatContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.sender #msgTime {
+  float: right;
+  color: #282c34 !important;
+  font-size: 4px !important;
+  width: max-content !important;
+  background-color: transparent !important;
+  font-style: italic !important;
+}
+
+.receiver #msgTime {
+  float: left;
+  color: #282c34 !important;
+  font-size: 4px !important;
+  width: max-content !important;
+  background-color: transparent !important;
+  font-style: italic !important;
 }
