@@ -57,6 +57,9 @@ function App() {
 
   return (
     <div className="App">
+      <h4 style={{ color: "blueviolet", cursor: "pointer" }}>
+        https://github.com/pkboe🌟
+      </h4>
       <h1 style={{ color: "blueviolet" }}>MockUp Interview Chat 🚀</h1>
       <div
         ref={appRef}
