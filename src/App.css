@@ -40,16 +40,16 @@
   }
 }
 .sender {
-  float: right;
-  /* width: max-content; */
   text-align: right;
+  float: right;
+  display: flex;
+  flex-direction: row-reverse;
   border-radius: 5px 5px 0px 10px;
   margin: 2px;
 }
 .receiver {
   float: left;
   /* width: max-content; */
-
   margin: 2px;
   text-align: left;
   border-radius: 5px 5px 10px 0px;
