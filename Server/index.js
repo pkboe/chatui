@@ -23,6 +23,4 @@ app.get("/greet", (req, res) => {
   res.send(output);
 });
 
-app.listen(port, () =>
-  console.log(`Hello world app listening on port ${port}!`)
-);
+app.listen(process.env.PORT || 2000, () => console.log("Server is running..."));

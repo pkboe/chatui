@@ -4,7 +4,8 @@
   "description": "A mock server for random replies",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Pranil Kharche",
   "license": "ISC",
@@ -13,5 +14,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
